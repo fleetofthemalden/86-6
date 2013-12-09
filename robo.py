@@ -24,7 +24,15 @@ class Scene (NodePath):
 		self.environ.reparentTo(self)
         # Apply scale and position transforms on the model.
 		self.environ.setScale(1,1,1)
-		self.environ.setPos(-8, -40, -4)
+		self.environ.setPos(-8, -60, -4)
+		
+		# Load the environment model.
+		self.sky = parent.loader.loadModel("happysky/happysky")
+        # Reparent the model to render.
+		self.sky.reparentTo(self)
+        # Apply scale and position transforms on the model.
+		self.sky.setScale(1,1,1)
+		self.sky.setPos(0,0,-7)
 		
 		# Add the spinCameraTask procedure to the task manager.
 		parent.taskMgr.add(parent.spinCameraTask, "SpinCameraTask")
@@ -95,7 +103,7 @@ class MyApp (ShowBase):
 		Picker.Picker (self, self.render)
 		scene = Scene (self)
 		scene.reparentTo (self.render)
-		self._zoomRad = 80.0
+		self._zoomRad = 100.0
 		self._zoomHt = 3
 		self._orginX = 0.
 		self._orginY = 0.
